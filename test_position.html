@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Faker position test</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <style>
+    img {
+        border: 0 none;
+        display: inline-block;
+        height: auto;
+        width: 100%;
+        height:100%;
+        vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Faker position test</h1>
+    <p>
+      <button type="button" id="shuffle" onclick="shuffle()">Shuffle</button>
+    </p>
+
+    <div class="row">
+        <div class="col-xs-2 col-md-2">5<img id="5" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-2">6<img id="6" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-2">7<img id="7" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-2">8<img id="8" src="/Users/fye/Downloads/back.jpg"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2 col-md-2">4<img id="4" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-offset-4 col-md-2 col-md-2">9<img id="9" src="/Users/fye/Downloads/back.jpg"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2 col-md-2">3<img id="3" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-offset-4 col-md-2">10<img id="10" src="/Users/fye/Downloads/back.jpg"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2 col-md-2">2<img id="2" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-offset-4 col-md-2">11<img id="11" src="/Users/fye/Downloads/back.jpg"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2 col-md-2">1<img id="1" src="/Users/fye/Downloads/back.jpg"></div>
+        <div class="col-xs-2 col-md-offset-4 col-md-2">12<img id="12" src="/Users/fye/Downloads/back.jpg"></div>
+    </div>
+
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script>
+    list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+    function shuffle(){
+        list = _.shuffle(list);
+        console.log(list);
+        // 1: savior/idiot
+        // 2: witch
+        // 3: seer
+        // 4: hunter
+        // 5-8: villagers
+        // 9-12: werewolves (9,self)
+        var base_path = "/Users/fye/Downloads/";
+        for(var i=1;i<13;i++){
+            var current_img = document.getElementById(i.toString());
+            if(list[i-1]<9){
+                current_img.src = base_path+'back.jpg';
+                current_img.dataset.role = list[i-1].toString();
+                current_img.onclick = function() {
+                    if(this.dataset.role<5){
+                        this.src = base_path+this.dataset.role+'.jpg';
+                    }else{
+                        this.src = base_path+'5.jpg';
+                    }
+                }
+            }else{
+                if(list[i-1]==9)
+                    current_img.src = base_path+'9.jpg';
+                else
+                    current_img.src = base_path+'10.jpg';
+            } 
+        }
+    }
+  </script>
+</body>
+</html>
