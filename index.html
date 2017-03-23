@@ -75,7 +75,7 @@
         for(var i=1;i<13;i++){
             var current_img = document.getElementById(i.toString());
             if(list[i-1]<9){
-                current_img.src = base_path+'back.jpg';
+                current_img.src = base_path+'back.png';
                 current_img.dataset.role = list[i-1].toString();
                 current_img.onclick = function() {
                     if(this.dataset.role<5){
